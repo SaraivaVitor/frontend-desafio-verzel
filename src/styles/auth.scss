@@ -1,0 +1,174 @@
+.admin-login-left {
+    height: 100vh;
+    width: 50%;
+
+    background-color: #5E49FF;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 50%;
+    }
+}
+
+.admin-login-right {
+    width: 50%;
+    height: 100vh;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        color: #000;
+        font-size: 15px;
+        font-weight: 400;
+    }
+
+    a {
+        text-decoration: none;
+        color: #5E49FF;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+}
+
+.form-login {
+    width: 50%;
+    height: 60%;
+
+    border: 3px solid #5E49FF;
+    border-radius: 9px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+        font-size: 25px;
+    }
+}
+
+.input {
+    width: 70%;
+    height: 50px;
+
+    border: 3px solid #5E49FF;
+    border-radius: 9px;
+
+    margin: 10px;
+
+    display: flex;
+    align-items: center;
+
+    input {
+        width: 90%;
+        height: 100%;
+        border: none;
+        color: #717171;
+
+
+        &:focus {
+            box-shadow: 0 0 0 0;
+            border: 0 none;
+            outline: 0;
+        }
+    }
+
+    span {
+        width: 10%;
+        color: #5E49FF;
+        font-size: 20px;
+
+        margin: 5px;
+    }
+
+}
+
+input[type='file'] {
+    display: none
+}
+
+label {
+    width: 100%;
+    color: #5E49FF;
+    cursor: pointer;
+
+    margin-bottom: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+
+
+.button-submit {
+    width: 70%;
+    height: 50px;
+
+    background-color: #5E49FF;
+    color: #fff;
+
+    margin: 5px;
+
+    cursor: pointer;
+
+    border-radius: 9px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        background-color: #fff;
+        color: #5E49FF;
+        border: 3px solid #5E49FF;
+    }
+}
+
+#Cadastro {
+    height: 60%;
+}
+
+.logo-mobile {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .form-login {
+        width: 70%;
+    }
+}
+
+@media (max-width: 425px) {
+    .admin-login-left {
+        display: none;
+    }
+
+    .admin-login-right {
+        width: 100%;
+
+        flex-direction: column;
+    }
+
+    .form-login {
+        width: 100%;
+        border: none;
+    }
+
+    .logo-mobile {
+        display: block;
+    }
+}
