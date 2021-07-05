@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 //images
 import Logo from "../../assets/logo.svg";
@@ -11,8 +11,10 @@ import { IoMdMail } from "react-icons/io";
 
 //styles
 import "../../styles/auth.scss";
+import api from "../../service/api";
 
 const AdminLogin: React.FC = () => {
+
   return (
     <>
       <div className="container">
@@ -24,11 +26,11 @@ const AdminLogin: React.FC = () => {
           <form className="form-login">
             <div className="input">
                 <span><IoMdMail /></span>
-                <input type="text" placeholder="Email" />
+                <input type="text" placeholder="Email" name="email" />
             </div>
             <div className="input">
                 <span><RiLockPasswordFill /></span>
-                <input type="text" placeholder="Senha" />
+                <input type="text" placeholder="Senha" name="email" />
             </div>
             <div className="button-submit">Entrar</div>
             <p>

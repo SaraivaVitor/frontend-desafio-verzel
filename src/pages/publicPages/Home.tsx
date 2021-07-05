@@ -14,33 +14,29 @@ import api from "../../service/api";
 
 //stylesh
 import "../../styles/index.scss";
-
+import { Link } from "react-router-dom";
 
 const Home: React.FC = () => {
-  
-  const [modules, setModules] = useState<AxiosResponse | any>([])
-  
-  
-  useEffect(()=>{
+  const [modules, setModules] = useState<AxiosResponse | any>([]);
 
-    async function getApi(){
-      try{
-        const data = await api.get(`/api/allmodules`)
-        setModules([data]);
-        console.log(data)
-      }catch(err){
+  useEffect(() => {
+    async function getApi() {
+      try {
+        const req = await api.get(`/allmodules`);
+
+        return setModules(req.data)
+      } catch (err) {
         console.log(err);
       }
     }
     getApi();
-  },[])
+  }, []);
 
+  //Listando em ordem alfabética
+  modules.sort(function (a: any, b: any) {
+    return a.nameModule > b.nameModule ? 1 : b.nameModule > a.nameModule ? -1 : 0;
+  });
   
-  //Ordenando em ordem alfabética
-  // modules.sort(function (a, b) {
-  //   return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0);
-  // });
-
   return (
     <>
       <div className="container">
@@ -77,20 +73,27 @@ const Home: React.FC = () => {
           <h1>Nossos módulos:</h1>
           <p>Selecione um módulo para ver os conteúdos dele!</p>
           <div className="list-modules">
-            {modules.map((e:any) => { 
-              let quantityLength = e.totalQuanity?.length
-              return(
-                <div key={e.id} className="card-module-container">
-                  <div className="card-module-thumb">
-                    <img src={e.thumb} alt="Thumb" />
+            <Link to="">
+              {modules.map((e: any) => {
+                let lessonsLength = [e.lessons]?.length;
+                console.log(lessonsLength)
+          
+                return (
+                  <div className="card-module-container">
+                    <div className="card-module-thumb">
+                      <img src={e.thumb} alt="Thumb" />
+                    </div>
+                    <div className="card-module-description">
+                      <h1>{e.nameModule}</h1>
+                      <p>
+                        {lessonsLength === undefined ? "0" : lessonsLength}/
+                        {e.totalQuantity} aulas
+                      </p>
+                    </div>
                   </div>
-                  <div className="card-module-description">
-                    <h1>{e.name}</h1>
-                    <p>{ quantityLength === undefined ? '0' : quantityLength }/{e.totalQuantity} aulas</p>
-                  </div>
-                </div>
-              )
-            })}
+                );
+              })}
+            </Link>
           </div>
         </div>
       </div>

@@ -19,19 +19,26 @@ import "../../styles/auth.scss";
 
 const AddLesson: React.FC = () => {
 
-  const [modulos, setModulos] = useState([])
+  const [name, setName] = useState("");
+  const [date, setDate] = useState("");
+  const [description, setDescription] = useState("");
+  const [module, setModule] = useState("");
 
-  useEffect(()=>{
-    async function getApi(){
-      try{
-        const data:never = await api.get(`/api/allmodules`)
-        setModulos([data]);
-      }catch(err){
-        console.log(err);
-      }
+  async function AddLesson() {
+    try {
+      await api.post("/createlesson", {
+        name: name,
+        date: date,
+        description: description,
+        module: module,
+      });
+
+      alert(`Aula adicionado!`);
+      return (window.location.href = "/admin/adminlessons");
+    } catch (error) {
+      console.log("Houve erro!");
     }
-    getApi();
-  },[])
+  }
 
   return (
     <>

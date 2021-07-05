@@ -16,7 +16,7 @@ import { AxiosResponse } from "axios";
 //styles
 import "../../styles/index.scss";
 
-const AdminLessons: React.FC = () => {
+const LessonsList: React.FC = () => {
   const [lessons, setLessons] = useState<AxiosResponse | any>([]);
 
   useEffect(() => {
@@ -34,9 +34,9 @@ const AdminLessons: React.FC = () => {
 
   //Listando em ordem alfabética
   lessons.sort(function (a: any, b: any) {
-    return a.nameModule > b.nameModule
+    return a.name > b.name
       ? 1
-      : b.nameModule > a.nameModule
+      : b.name > a.name
       ? -1
       : 0;
   });
@@ -81,4 +81,4 @@ const AdminLessons: React.FC = () => {
   );
 };
 
-export default AdminLessons;
+export default LessonsList;
