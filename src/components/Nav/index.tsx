@@ -7,10 +7,14 @@ import LogoImage from "../../assets/logo.svg";
 
 //icons
 import { FiLogOut } from "react-icons/fi";
+import { useContext } from "react";
+import { AuthContext } from "../../context/auth";
 
-let logado = true;
+
 
 const Nav: React.FC = () => {
+  const { logado } = useContext(AuthContext);
+
   return (
     <div className="nav-container">
       <div className="nav-content">
@@ -26,14 +30,14 @@ const Nav: React.FC = () => {
                   <FiLogOut />
               </span>
               <div className="nav-user">
-                <a>Vitor</a>
+                <span>Sair</span>
                 <span>
                   <FiLogOut />
                 </span>
               </div>
             </div>
           ) : (
-            <Link to="/admin/login">
+            <Link to="/login">
               <div className="nav-button">Entrar</div>
             </Link>
           )}

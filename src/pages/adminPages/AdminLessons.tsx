@@ -63,7 +63,7 @@ const AdminLessons: React.FC = () => {
                     </div>
                     <div id="Description-Lessons" className="card-module-description">
                         <h1>{e.name}</h1>
-                        <p>Pequena descrição sobre o que vai ser aprendido na aula e o que vai ser utilizado.</p>
+                        <p>{e.description}</p>
                         <div className="bottom-module">
                             <div id="Buttons-admin-lesson" className="bottom-module-buttons">
                                 <span id="edit" ><GrConfigure /></span>

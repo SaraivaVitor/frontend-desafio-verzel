@@ -62,8 +62,8 @@ const AdminSingUp: React.FC = () => {
               <input type="password" placeholder="Senha" name="password" onChange={ e => setPassword(e.target.value) } />
             </div>
             <div onClick={()=>SignUp()} className="button-submit">Cadastrar</div>
-            <p>
-              Já possue conta ? <Link to="/admin/login">Entre!</Link>
+            <p className="redirectSignUp" >
+              Já possue conta ? <Link to="/login">Entre!</Link>
             </p>
           </form>
         </div>

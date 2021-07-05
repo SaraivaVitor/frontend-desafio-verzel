@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 
 //components
 import Nav from "../../components/Nav";
@@ -36,6 +36,8 @@ const Home: React.FC = () => {
   modules.sort(function (a: any, b: any) {
     return a.nameModule > b.nameModule ? 1 : b.nameModule > a.nameModule ? -1 : 0;
   });
+
+  console.log(modules)
   
   return (
     <>
@@ -73,12 +75,12 @@ const Home: React.FC = () => {
           <h1>Nossos módulos:</h1>
           <p>Selecione um módulo para ver os conteúdos dele!</p>
           <div className="list-modules">
-            <Link to="">
               {modules.map((e: any) => {
                 let lessonsLength = [e.lessons]?.length;
                 console.log(lessonsLength)
           
                 return (
+                  <Link to={`lessons/${e._id}`}>
                   <div className="card-module-container">
                     <div className="card-module-thumb">
                       <img src={e.thumb} alt="Thumb" />
@@ -91,9 +93,9 @@ const Home: React.FC = () => {
                       </p>
                     </div>
                   </div>
+                  </Link>
                 );
               })}
-            </Link>
           </div>
         </div>
       </div>

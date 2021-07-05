@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 //images
 import Logo from "../../assets/logo.svg";
@@ -12,8 +12,25 @@ import { IoMdMail } from "react-icons/io";
 //styles
 import "../../styles/auth.scss";
 import api from "../../service/api";
+import { FormEvent } from "react";
 
 const AdminLogin: React.FC = () => {
+  const emailRef:any = useRef()
+  const passwordRef:any = useRef()
+
+  const handlelogin = async (prop:FormEvent) => {
+    prop.preventDefault()
+    try {
+      const { data } = await api.post("/adminauth", {
+        email: emailRef.current.value,
+        password: passwordRef.current.value
+      })
+      localStorage.setItem("@cursosOn", data.token)
+      window.location.replace("/")
+    } catch (error) {
+      
+    }
+  }
 
   return (
     <>
@@ -23,16 +40,16 @@ const AdminLogin: React.FC = () => {
         </div>
         <div className="admin-login-right">
         <img className="logo-mobile" src={Logo} alt="Logotipo" />
-          <form className="form-login">
+          <form onSubmit={handlelogin} className="form-login">
             <div className="input">
                 <span><IoMdMail /></span>
-                <input type="text" placeholder="Email" name="email" />
+                <input ref={emailRef} type="text" placeholder="Email" />
             </div>
             <div className="input">
                 <span><RiLockPasswordFill /></span>
-                <input type="text" placeholder="Senha" name="email" />
+                <input ref={passwordRef} type="password" placeholder="Senha" />
             </div>
-            <div className="button-submit">Entrar</div>
+            <button className="button-submit">Entrar</button>
             <p>
                 Não possue conta ? <Link to="/admin/singup">Cadastre-se!</Link>
             </p>
