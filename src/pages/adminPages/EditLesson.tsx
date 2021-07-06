@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import api from "../../service/api"
+import api from "../../service/api";
 
 //images
 import LogoWhite from "../../assets/LogoWhite.svg";
@@ -19,34 +19,29 @@ import "../../styles/auth.scss";
 import { useLocation } from "react-router-dom";
 
 const AddLesson: React.FC = () => {
-
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
 
+  const locationState = useLocation();
+  const moduleId: any = locationState.state;
 
-  const locationState = useLocation()
-  const moduleId:any = locationState.state
+  console.log(moduleId.id);
 
-  console.log(moduleId.id)
-  
-  async function AddLesson() {
+  async function EditLesson() {
     try {
-      await api.post("/createlesson", {
+      await api.put(`/editlesson/${moduleId.id}`, {
         name: name,
         date: date,
         description: description,
-        module: moduleId.id,
       });
 
-      alert(`Aula adicionado!`);
+      alert(`Aula editada!`);
       return (window.location.href = "/admin/adminlessons");
     } catch (error) {
       console.log("Houve erro!");
-      console.log(error);
     }
   }
-
 
   return (
     <>
@@ -63,23 +58,37 @@ const AddLesson: React.FC = () => {
               <span>
                 <HiIdentification />
               </span>
-              <input type="text" placeholder="Nome da aula" onChange={ e => setName(e.target.value) } />
+              <input
+                type="text"
+                placeholder="Nome da aula"
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
-            <div id="text-area" className="input" >
+            <div id="text-area" className="input">
               <span>
                 <FaCalendarAlt />
               </span>
-              <input type="date" placeholder="Data da aula" onChange={ e => setDate(e.target.value) } />
+              <input
+                type="date"
+                placeholder="Data da aula"
+                onChange={(e) => setDate(e.target.value)}
+              />
             </div>
             <div className="input">
               <span>
                 <MdDescription />
               </span>
-              <input type="text" placeholder="Descrição" onChange={ e => setDescription(e.target.value) } />
+              <input
+                type="text"
+                placeholder="Descrição"
+                onChange={(e) => setDescription(e.target.value)}
+              />
             </div>
-            <input id='selecao-arquivo' type='file'></input>
+            <input id="selecao-arquivo" type="file"></input>
 
-            <div onClick={()=>AddLesson()} className="button-submit">Adicionar</div>
+            <div onClick={() => EditLesson()} className="button-submit">
+              Adicionar
+            </div>
           </form>
         </div>
       </div>

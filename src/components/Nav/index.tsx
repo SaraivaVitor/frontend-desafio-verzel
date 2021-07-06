@@ -15,6 +15,11 @@ import { AuthContext } from "../../context/auth";
 const Nav: React.FC = () => {
   const { logado } = useContext(AuthContext);
 
+  function SignOut(){
+    localStorage.clear();
+    return window.location.href = "/"
+  }
+
   return (
     <div className="nav-container">
       <div className="nav-content">
@@ -29,8 +34,8 @@ const Nav: React.FC = () => {
               <span id="Logout-Mobile">
                   <FiLogOut />
               </span>
-              <div className="nav-user">
-                <span>Sair</span>
+              <div onClick={()=>SignOut()} className="nav-user">
+                <p>Sair</p>
                 <span>
                   <FiLogOut />
                 </span>

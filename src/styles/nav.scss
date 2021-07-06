@@ -86,11 +86,13 @@
 
     padding: 3px;
 
+    cursor: pointer;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    a{
+    p{
         color: #5E49FF;
         font-size: 15px;
         margin-left: 10px;

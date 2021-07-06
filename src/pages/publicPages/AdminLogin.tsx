@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 
 //images
 import Logo from "../../assets/logo.svg";
@@ -51,7 +51,7 @@ const AdminLogin: React.FC = () => {
             </div>
             <button className="button-submit">Entrar</button>
             <p>
-                Não possue conta ? <Link to="/admin/singup">Cadastre-se!</Link>
+                Não possue conta ? <Link to="/signup">Cadastre-se!</Link>
             </p>
           </form>
         </div>

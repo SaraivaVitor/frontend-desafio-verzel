@@ -109,6 +109,7 @@
 
     display: flex;
     flex-direction: column;
+
 }
 
 .card-module-thumb{
@@ -117,8 +118,12 @@
 
     background-color: #5E49FF;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     img{
-        width: 100%;
+        width: 90%;
         height: 100%;
     }
 }

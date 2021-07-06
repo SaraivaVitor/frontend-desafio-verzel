@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useHistory } from "react-router-dom";
 
 //components
 import Nav from "../../components/Nav";
@@ -7,6 +8,7 @@ import Footer from "../../components/Footer";
 //images
 import CodeImage1 from "../../assets/code1.svg";
 import CodeImage2 from "../../assets/code2.svg";
+import LogoWhite from "../../assets/LogoWhite.svg";
 
 //api
 import { AxiosResponse } from "axios";
@@ -14,16 +16,18 @@ import api from "../../service/api";
 
 //stylesh
 import "../../styles/index.scss";
-import { Link } from "react-router-dom";
+
+
+
 
 const Home: React.FC = () => {
   const [modules, setModules] = useState<AxiosResponse | any>([]);
+  const history = useHistory();
 
   useEffect(() => {
     async function getApi() {
       try {
         const req = await api.get(`/allmodules`);
-
         return setModules(req.data)
       } catch (err) {
         console.log(err);
@@ -76,24 +80,30 @@ const Home: React.FC = () => {
           <p>Selecione um módulo para ver os conteúdos dele!</p>
           <div className="list-modules">
               {modules.map((e: any) => {
-                let lessonsLength = [e.lessons]?.length;
-                console.log(lessonsLength)
-          
+        
                 return (
-                  <Link to={`lessons/${e._id}`}>
-                  <div className="card-module-container">
+                  <div
+                   key={e._id} 
+                   className="card-module-container"
+                   onClick={() =>
+                    history.push({
+                      pathname: `/lessons`,
+                      state: { id: e._id },
+                    })
+                  }
+                   >
+                     
                     <div className="card-module-thumb">
-                      <img src={e.thumb} alt="Thumb" />
+                      <img src={LogoWhite} alt="Thumb" />
                     </div>
                     <div className="card-module-description">
-                      <h1>{e.nameModule}</h1>
+                      <h1>{e.name}</h1>
                       <p>
-                        {lessonsLength === undefined ? "0" : lessonsLength}/
-                        {e.totalQuantity} aulas
+                        {/* {lessonsLength === undefined ? "0" : lessonsLength}/ */}
+                        {e.totalQuanity} aulas
                       </p>
                     </div>
                   </div>
-                  </Link>
                 );
               })}
           </div>

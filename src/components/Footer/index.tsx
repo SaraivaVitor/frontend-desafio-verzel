@@ -16,12 +16,6 @@ const Footer: React.FC = () => {
       <div className="footer-container">
           <div className="footer-content-top">
             <img src={LogoWhite} alt="Logo" />
-              <div className="footer-socials">
-                <span><AiFillInstagram /></span>
-                <span><AiFillFacebook /></span>
-                <span><AiFillLinkedin /></span>
-                <span><AiFillYoutube /></span>
-              </div>
           </div>
           <div className="footer-content-bottom">
             <p>© Copyright 2021. Todos os direitos reservados.</p>

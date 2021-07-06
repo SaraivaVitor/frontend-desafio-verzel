@@ -15,7 +15,7 @@ const AuthProvider: React.FC = ({ children }) => {
           setLogado(true);
       }
     
-  }, [])
+  }, [token])
 
   return (
     <AuthContext.Provider value={{ logado: Boolean(logado) }}>

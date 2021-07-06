@@ -8,7 +8,6 @@ import LogoWhite from "../../assets/LogoWhite.svg";
 //icons
 import { FaCalendarAlt } from "react-icons/fa";
 import { HiIdentification } from "react-icons/hi";
-import { MdDescription } from "react-icons/md";
 
 //components
 import Logo from "../../assets/logo.svg";
@@ -18,35 +17,30 @@ import Nav from "../../components/Nav";
 import "../../styles/auth.scss";
 import { useLocation } from "react-router-dom";
 
-const AddLesson: React.FC = () => {
+const EditModule: React.FC = () => {
 
   const [name, setName] = useState("");
-  const [date, setDate] = useState("");
-  const [description, setDescription] = useState("");
-
+  const [totalQuanity, setTotal] = useState("");
 
   const locationState = useLocation()
   const moduleId:any = locationState.state
 
-  console.log(moduleId.id)
   
-  async function AddLesson() {
+
+  async function EditModule() {
     try {
-      await api.post("/createlesson", {
+      await api.put(`/editmodules/${moduleId.id}`, {
         name: name,
-        date: date,
-        description: description,
-        module: moduleId.id,
+        totalQuanity: totalQuanity
       });
 
-      alert(`Aula adicionado!`);
-      return (window.location.href = "/admin/adminlessons");
+      alert(`Módulo editado!`);
+      return (window.location.href = "/admin/adminmodules");
     } catch (error) {
       console.log("Houve erro!");
-      console.log(error);
     }
   }
-
+ 
 
   return (
     <>
@@ -58,28 +52,22 @@ const AddLesson: React.FC = () => {
         <div className="admin-login-right">
           <img className="logo-mobile" src={Logo} alt="Logotipo" />
           <form className="form-login">
-            <h1>Adicionar aula:</h1>
+            <h1>Editar módulo:</h1>
             <div className="input">
               <span>
                 <HiIdentification />
               </span>
-              <input type="text" placeholder="Nome da aula" onChange={ e => setName(e.target.value) } />
+              <input type="text" placeholder="Novo nome do módulo" onChange={ e => setName(e.target.value) } />
             </div>
             <div id="text-area" className="input" >
               <span>
                 <FaCalendarAlt />
               </span>
-              <input type="date" placeholder="Data da aula" onChange={ e => setDate(e.target.value) } />
-            </div>
-            <div className="input">
-              <span>
-                <MdDescription />
-              </span>
-              <input type="text" placeholder="Descrição" onChange={ e => setDescription(e.target.value) } />
+              <input type="text-area" placeholder="Total de aulas" onChange={ e => setTotal(e.target.value) } />
             </div>
             <input id='selecao-arquivo' type='file'></input>
 
-            <div onClick={()=>AddLesson()} className="button-submit">Adicionar</div>
+            <div onClick={()=>EditModule()} className="button-submit">Adicionar</div>
           </form>
         </div>
       </div>
@@ -87,4 +75,4 @@ const AddLesson: React.FC = () => {
   );
 };
 
-export default AddLesson;
+export default EditModule;

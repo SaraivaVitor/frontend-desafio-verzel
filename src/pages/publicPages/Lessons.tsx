@@ -1,9 +1,6 @@
-import { Link } from "react-router-dom";
+import {  useLocation } from "react-router-dom";
 
 //icons
-import { IoMdAddCircleOutline } from "react-icons/io";
-import { GrConfigure } from "react-icons/gr";
-import { FaTrashAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 //components
@@ -13,36 +10,35 @@ import Nav from "../../components/Nav";
 import api from "../../service/api";
 import { AxiosResponse } from "axios";
 
+//images
+import LogoWhite from "../../assets/LogoWhite.svg";
+
 //styles
 import "../../styles/index.scss";
 
-const LessonsList: React.FC = () => {
-  const url = window.location.pathname;
-  const splitURL = url.split("/");
+const Lessons: React.FC = () => {
+  
+  const locationState = useLocation();
+  const moduleId: any = locationState.state;
+  const [lessons, setLessons] = useState<AxiosResponse | any>([]);
 
-  const [module, setModule] = useState<AxiosResponse | any>([]);
-
-  console.log();
   useEffect(() => {
     async function getApi() {
       try {
-        const data = await api.get(`/allmodules/${splitURL[2]}`);
-        const req: any = data.data;
+        const data = await api.get(`/alllessonsbymodule/${moduleId.id}`);
 
-        setModule([req]);
+        return setLessons(data.data);
       } catch (err) {
         console.log(err);
       }
     }
     getApi();
-  }, []);
+  }, [moduleId.id]);
 
-
-
-  
+  console.log(lessons)
 
   //Listando em ordem alfabética
-  module.sort(function (a: any, b: any) {
+  lessons.sort(function (a: any, b: any) {
     return a.nameModule > b.nameModule
       ? 1
       : b.nameModule > a.nameModule
@@ -56,22 +52,15 @@ const LessonsList: React.FC = () => {
         <div className="home-content">
           <h1>Aulas:</h1>
           <div className="list-modules">
-            <Link to="/admin/addlesson">
-              <div id="Admin-Add-Lesson" className="card-module-container">
-                <span className="add">
-                  <IoMdAddCircleOutline />
-                </span>
-              </div>
-            </Link>
-            {module.map((e: any) => {
+            {lessons.map((e: any) => {
               return (
                 <div
                   id="Admin-Lessons"
-                  key={e.id}
+                  key={e._id}
                   className="card-module-container"
                 >
                   <div id="Thumb-Lessons" className="card-module-thumb">
-                    <img src={e.thumb} alt="Thumb" />
+                    <img src={LogoWhite} alt="Thumb" />
                   </div>
                   <div
                     id="Description-Lessons"
@@ -79,6 +68,7 @@ const LessonsList: React.FC = () => {
                   >
                     <h1>{e.name}</h1>
                     <p>{e.description}</p>
+                    <p>{e.date}</p>
                   </div>
                 </div>
               );
@@ -90,4 +80,4 @@ const LessonsList: React.FC = () => {
   );
 };
 
-export default LessonsList;
+export default Lessons;

@@ -28,7 +28,7 @@ const AdminSingUp: React.FC = () => {
       });
 
       alert(`Voce foi cadastrado!`);
-      return (window.location.href = "/");
+      return (window.location.href = "/login");
     } catch (error) {
       console.log("Houve erro!");
     }

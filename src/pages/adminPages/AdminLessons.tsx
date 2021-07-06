@@ -1,13 +1,11 @@
-import { Link } from "react-router-dom";
-
 //icons
-import { IoMdAddCircleOutline } from "react-icons/io";
 import { GrConfigure } from "react-icons/gr";
 import { FaTrashAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 //components
 import Nav from "../../components/Nav";
+import { useHistory } from "react-router-dom";
 
 //api
 import api from "../../service/api";
@@ -16,8 +14,12 @@ import { AxiosResponse } from "axios";
 //styles
 import "../../styles/index.scss";
 
+//images
+import LogoWhite from "../../assets/LogoWhite.svg";
+
 const AdminLessons: React.FC = () => {
   const [lessons, setLessons] = useState<AxiosResponse | any>([]);
+  const historyEdit = useHistory();
 
   useEffect(() => {
     async function getApi() {
@@ -31,6 +33,13 @@ const AdminLessons: React.FC = () => {
     }
     getApi();
   }, []);
+
+  //deleta aula
+  async function DeleteLesson(prop: any) {
+    await api.delete(`/deletelesson/${prop}`);
+    alert(`Aula adicionado!`);
+    return (window.location.href = "/admin/adminlessons");
+  }
 
   //Listando em ordem alfabética
   lessons.sort(function (a: any, b: any) {
@@ -47,33 +56,46 @@ const AdminLessons: React.FC = () => {
         <div className="home-content">
           <h1>Aulas:</h1>
           <div className="list-modules">
-            <Link to="/admin/addlesson">
-              <div id="Admin-Add-Lesson" className="card-module-container">
-                <span className="add">
-                  <IoMdAddCircleOutline />
-                </span>
-              </div>
-            </Link>
-            {lessons.map((e:any )=> {
-                return(
-                    <div id="Admin-Lessons" key={e.id} className="card-module-container">
-                    
-                    <div id="Thumb-Lessons" className="card-module-thumb">
-                        <img src={e.thumb} alt="Thumb" />
+            {lessons.map((e: any) => {
+              return (
+                <div
+                  id="Admin-Lessons"
+                  key={e._id}
+                  className="card-module-container"
+                >
+                  <div id="Thumb-Lessons" className="card-module-thumb">
+                    <img src={LogoWhite} alt="Thumb" />
+                  </div>
+                  <div
+                    id="Description-Lessons"
+                    className="card-module-description"
+                  >
+                    <h1>{e.name}</h1>
+                    <p>{e.description}</p>
+                    <div className="bottom-module">
+                      <div
+                        id="Buttons-admin-lesson"
+                        className="bottom-module-buttons"
+                      >
+                        <span
+                          onClick={() =>
+                            historyEdit.push({
+                              pathname: "/admin/editlesson",
+                              state: { id: e._id },
+                            })
+                          }
+                        >
+                          <GrConfigure />
+                        </span>
+                        <span onClick={() => DeleteLesson(e._id)} id="delete">
+                          <FaTrashAlt />
+                        </span>
+                      </div>
                     </div>
-                    <div id="Description-Lessons" className="card-module-description">
-                        <h1>{e.name}</h1>
-                        <p>{e.description}</p>
-                        <div className="bottom-module">
-                            <div id="Buttons-admin-lesson" className="bottom-module-buttons">
-                                <span id="edit" ><GrConfigure /></span>
-                                <span id="delete" ><FaTrashAlt /></span>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                )
-                })}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

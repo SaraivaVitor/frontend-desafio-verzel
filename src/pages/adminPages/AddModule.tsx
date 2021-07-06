@@ -25,13 +25,13 @@ const AddModule: React.FC = () => {
     try {
       await api.post("/createmodules", {
         name: name,
-        totalQuantity: totalQuantity,
+        totalQuanity: totalQuantity,
       });
 
       alert(`Módulo adicionado!`);
       return (window.location.href = "/admin/adminmodules");
     } catch (error) {
-      console.log("Houve erro!");
+      console.log(error,"Houve erro!");
     }
   }
 
