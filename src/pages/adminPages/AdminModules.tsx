@@ -48,9 +48,9 @@ const AdminModules: React.FC = () => {
 
   //Listando em ordem alfabética
   modules.sort(function (a: any, b: any) {
-    return a.nameModule > b.nameModule
+    return a.name > b.name
       ? 1
-      : b.nameModule > a.nameModule
+      : b.name > a.name
       ? -1
       : 0;
   });

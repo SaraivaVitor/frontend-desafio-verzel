@@ -33,6 +33,7 @@ const Home: React.FC = () => {
     getApi();
   }, []);
 
+
   //Listando em ordem alfabética
   modules.sort(function (a: any, b: any) {
     return a.name > b.name ? 1 : b.name > a.name ? -1 : 0;
