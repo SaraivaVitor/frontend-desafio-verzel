@@ -1,4 +1,4 @@
-.nav-container{
+.nav-container {
     height: 40px;
     width: 100vw;
 
@@ -13,7 +13,8 @@
     justify-content: center;
     align-items: center;
 }
-.nav-content{
+
+.nav-content {
     width: 70%;
     height: 100%;
 
@@ -21,23 +22,23 @@
     justify-content: space-between;
     align-items: center;
 
-    img{
+    img {
         width: 120px;
         margin-top: 10px;
     }
 
-    a{
+    a {
         text-decoration: none;
     }
 }
 
-.nav-left{
+.nav-left {
     display: flex;
     align-items: center;
-    justify-content: space-between;   
+    justify-content: space-between;
 }
 
-.nav-button{
+.nav-button {
     width: 70px;
     height: 100%;
 
@@ -53,13 +54,13 @@
     color: #5E49FF;
 
 
-    &:hover{
+    &:hover {
         background-color: #5E49FF;
         color: #fff;
     }
 }
 
-.nav-admin-optios{
+.nav-admin-optios {
     height: 100%;
     width: 450px;
 
@@ -67,17 +68,17 @@
     align-items: center;
     justify-content: space-between;
 
-    a{
+    a {
         color: #5E49FF;
         text-decoration: none;
 
-        &:hover{
+        &:hover {
             margin-bottom: 3px;
         }
     }
 }
 
-.nav-user{
+.nav-user {
     width: 100px;
     height: 35px;
 
@@ -92,13 +93,13 @@
     justify-content: space-between;
     align-items: center;
 
-    p{
+    p {
         color: #5E49FF;
         font-size: 15px;
         margin-left: 10px;
     }
-    
-    span{
+
+    span {
         color: #5E49FF;
         font-size: 20px;
         cursor: pointer;
@@ -107,26 +108,26 @@
 
 }
 
-#Logout-Mobile{
+#Logout-Mobile {
     display: none;
 }
 
-@media(max-width:768px){
-    .nav-content{
+@media(max-width:768px) {
+    .nav-content {
         width: 100%;
         padding: 5px;
 
-        a{
+        a {
             font-size: 10px;
             margin: 10px;
         }
     }
 
-    .nav-user{
+    .nav-user {
         display: none;
     }
 
-    #Logout-Mobile{
+    #Logout-Mobile {
         color: #5E49FF;
         font-size: 20px;
         cursor: pointer;
@@ -134,7 +135,7 @@
         display: block;
     }
 
-    .nav-admin-optios{
+    .nav-admin-optios {
         width: 100%;
     }
 

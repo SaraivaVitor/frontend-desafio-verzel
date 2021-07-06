@@ -33,7 +33,7 @@ const AdminSingUp: React.FC = () => {
       console.log("Houve erro!");
     }
   }
- 
+
   return (
     <>
       <div className="container">
@@ -47,22 +47,39 @@ const AdminSingUp: React.FC = () => {
               <span>
                 <FaUserCircle />
               </span>
-              <input type="text" placeholder="Nome" name="firstName" onChange={ e => setName(e.target.value) } />
+              <input
+                type="text"
+                placeholder="Nome"
+                name="firstName"
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
             <div className="input">
               <span>
                 <IoMdMail />
               </span>
-              <input type="text" placeholder="Email" name="email" onChange={ e => setEmail(e.target.value) } />
+              <input
+                type="text"
+                placeholder="Email"
+                name="email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div className="input">
               <span>
                 <RiLockPasswordFill />
               </span>
-              <input type="password" placeholder="Senha" name="password" onChange={ e => setPassword(e.target.value) } />
+              <input
+                type="password"
+                placeholder="Senha"
+                name="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
-            <div onClick={()=>SignUp()} className="button-submit">Cadastrar</div>
-            <p className="redirectSignUp" >
+            <div onClick={() => SignUp()} className="button-submit">
+              Cadastrar
+            </div>
+            <p className="redirectSignUp">
               Já possue conta ? <Link to="/login">Entre!</Link>
             </p>
           </form>

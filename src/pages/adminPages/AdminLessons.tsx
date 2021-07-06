@@ -37,7 +37,7 @@ const AdminLessons: React.FC = () => {
   //deleta aula
   async function DeleteLesson(prop: any) {
     await api.delete(`/deletelesson/${prop}`);
-    alert(`Aula adicionado!`);
+    alert(`Aula Deletada!`);
     return (window.location.href = "/admin/adminlessons");
   }
 
@@ -73,6 +73,7 @@ const AdminLessons: React.FC = () => {
                     <h1>{e.name}</h1>
                     <p>{e.description}</p>
                     <div className="bottom-module">
+                      <p>{e.date}</p>
                       <div
                         id="Buttons-admin-lesson"
                         className="bottom-module-buttons"

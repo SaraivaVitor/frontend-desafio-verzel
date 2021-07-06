@@ -1,46 +1,28 @@
-# Getting Started with Create React App
+<img src="./src/assets/logo.svg" />
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# CursosOn
+-  Projeto desenvolvido como prova para o processo seletivo para a empresa Verzel, o qual consiste em um sistema de catálogo de aulas separadas por módulos, o qual tinha por obrigação ter como principais funcionalidades a exibição dos módulos, exibição das aulas filtradas pelo seu módulo, um sistema de autenticação twd no qual quando autenticado o usuário tem as opções de listar, criar, deletar e editar os módulos e as aulas, e algumas pequenas regras relacionadas a forma de exibição e afins. 
 
-## Available Scripts
+## Tecnologias frontend
+- Typescript
+- React.js
+- Scss
 
-In the project directory, you can run:
+## Tecnologias backend
+- Typescript
+- MongoDb - Cluster online hospedado no MongoDb Atlas conectado via mongoose(). 
+- Express
 
-### `yarn start`
+## Como utilizar
+- Use "npm" ou "yarn" install no terminal dentro da pasta do frontend e do backend
+- Use "npm" ou "yarn" start dentro da pasta do backend para ligar o servidor na porta (http://localhost:8080)
+- Use "npm" ou "yarn" start dentro da pasta do frontend para iniciar o front e abrir no navegador a página em react(http://localhost:3000) 
+- Feito isso o App já estará rodando perfeitamente no navegador
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Desenvolvedor
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Foto | Nome | GitHub | Likedin | E-mail
+---- | ---- | ------ | ------- | ------
+<img src="https://avatars1.githubusercontent.com/u/55057661?s=460&u=be2618e78e1e56e0ddb9efbd4dcacd4264746d68&v=4" width="80px"> | Vitor Saraiva Pereira | [SaraivaVitor](https://github.com/SaraivaVitor) | [Linkedin](https://www.linkedin.com/in/vitor-pereira-799a421ab) | vitorsaraivapereira1@gmail.com
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<br>

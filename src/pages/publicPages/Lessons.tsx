@@ -1,4 +1,4 @@
-import {  useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 //icons
 import { useEffect, useState } from "react";
@@ -17,7 +17,6 @@ import LogoWhite from "../../assets/LogoWhite.svg";
 import "../../styles/index.scss";
 
 const Lessons: React.FC = () => {
-  
   const locationState = useLocation();
   const moduleId: any = locationState.state;
   const [lessons, setLessons] = useState<AxiosResponse | any>([]);
@@ -35,7 +34,7 @@ const Lessons: React.FC = () => {
     getApi();
   }, [moduleId.id]);
 
-  console.log(lessons)
+  console.log(lessons);
 
   //Listando em ordem alfabética
   lessons.sort(function (a: any, b: any) {
@@ -49,7 +48,7 @@ const Lessons: React.FC = () => {
     <>
       <div className="container">
         <Nav />
-        <div className="home-content">
+        <div  className="home-content">
           <h1>Aulas:</h1>
           <div className="list-modules">
             {lessons.map((e: any) => {

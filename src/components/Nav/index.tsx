@@ -10,14 +10,12 @@ import { FiLogOut } from "react-icons/fi";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth";
 
-
-
 const Nav: React.FC = () => {
   const { logado } = useContext(AuthContext);
 
-  function SignOut(){
+  function SignOut() {
     localStorage.clear();
-    return window.location.href = "/"
+    return (window.location.href = "/");
   }
 
   return (
@@ -32,9 +30,9 @@ const Nav: React.FC = () => {
               <Link to="/admin/adminmodules">Administrar Módulos</Link>
               <Link to="/admin/adminlessons">Administrar Aulas</Link>
               <span id="Logout-Mobile">
-                  <FiLogOut />
+                <FiLogOut />
               </span>
-              <div onClick={()=>SignOut()} className="nav-user">
+              <div onClick={() => SignOut()} className="nav-user">
                 <p>Sair</p>
                 <span>
                   <FiLogOut />

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import api from "../../service/api"
+import api from "../../service/api";
 
 //images
 import LogoWhite from "../../assets/LogoWhite.svg";
@@ -18,20 +18,17 @@ import "../../styles/auth.scss";
 import { useLocation } from "react-router-dom";
 
 const EditModule: React.FC = () => {
-
   const [name, setName] = useState("");
   const [totalQuanity, setTotal] = useState("");
 
-  const locationState = useLocation()
-  const moduleId:any = locationState.state
-
-  
+  const locationState = useLocation();
+  const moduleId: any = locationState.state;
 
   async function EditModule() {
     try {
       await api.put(`/editmodules/${moduleId.id}`, {
         name: name,
-        totalQuanity: totalQuanity
+        totalQuanity: totalQuanity,
       });
 
       alert(`Módulo editado!`);
@@ -40,7 +37,6 @@ const EditModule: React.FC = () => {
       console.log("Houve erro!");
     }
   }
- 
 
   return (
     <>
@@ -57,17 +53,27 @@ const EditModule: React.FC = () => {
               <span>
                 <HiIdentification />
               </span>
-              <input type="text" placeholder="Novo nome do módulo" onChange={ e => setName(e.target.value) } />
+              <input
+                type="text"
+                placeholder="Novo nome do módulo"
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
-            <div id="text-area" className="input" >
+            <div id="text-area" className="input">
               <span>
                 <FaCalendarAlt />
               </span>
-              <input type="text-area" placeholder="Total de aulas" onChange={ e => setTotal(e.target.value) } />
+              <input
+                type="text-area"
+                placeholder="Total de aulas"
+                onChange={(e) => setTotal(e.target.value)}
+              />
             </div>
-            <input id='selecao-arquivo' type='file'></input>
+            <input id="selecao-arquivo" type="file"></input>
 
-            <div onClick={()=>EditModule()} className="button-submit">Adicionar</div>
+            <div onClick={() => EditModule()} className="button-submit">
+              Enviar
+            </div>
           </form>
         </div>
       </div>

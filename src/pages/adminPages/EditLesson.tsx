@@ -53,7 +53,7 @@ const AddLesson: React.FC = () => {
         <div className="admin-login-right">
           <img className="logo-mobile" src={Logo} alt="Logotipo" />
           <form className="form-login">
-            <h1>Adicionar aula:</h1>
+            <h1>Editar aula:</h1>
             <div className="input">
               <span>
                 <HiIdentification />
@@ -69,7 +69,7 @@ const AddLesson: React.FC = () => {
                 <FaCalendarAlt />
               </span>
               <input
-                type="date"
+                type="text"
                 placeholder="Data da aula"
                 onChange={(e) => setDate(e.target.value)}
               />
@@ -87,7 +87,7 @@ const AddLesson: React.FC = () => {
             <input id="selecao-arquivo" type="file"></input>
 
             <div onClick={() => EditLesson()} className="button-submit">
-              Adicionar
+              Enviar
             </div>
           </form>
         </div>

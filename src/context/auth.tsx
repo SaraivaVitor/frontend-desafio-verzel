@@ -11,11 +11,10 @@ const AuthProvider: React.FC = ({ children }) => {
   const token: any = localStorage.getItem("@cursosOn");
 
   useEffect(() => {
-      if(token){
-          setLogado(true);
-      }
-    
-  }, [token])
+    if (token) {
+      setLogado(true);
+    }
+  }, [token]);
 
   return (
     <AuthContext.Provider value={{ logado: Boolean(logado) }}>

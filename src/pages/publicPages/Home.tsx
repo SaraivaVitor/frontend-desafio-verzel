@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 //components
@@ -17,9 +17,6 @@ import api from "../../service/api";
 //stylesh
 import "../../styles/index.scss";
 
-
-
-
 const Home: React.FC = () => {
   const [modules, setModules] = useState<AxiosResponse | any>([]);
   const history = useHistory();
@@ -28,7 +25,7 @@ const Home: React.FC = () => {
     async function getApi() {
       try {
         const req = await api.get(`/allmodules`);
-        return setModules(req.data)
+        return setModules(req.data);
       } catch (err) {
         console.log(err);
       }
@@ -38,11 +35,11 @@ const Home: React.FC = () => {
 
   //Listando em ordem alfabética
   modules.sort(function (a: any, b: any) {
-    return a.nameModule > b.nameModule ? 1 : b.nameModule > a.nameModule ? -1 : 0;
+    return a.name > b.name ? 1 : b.name > a.name ? -1 : 0;
   });
 
-  console.log(modules)
-  
+  console.log(modules);
+
   return (
     <>
       <div className="container">
@@ -79,33 +76,28 @@ const Home: React.FC = () => {
           <h1>Nossos módulos:</h1>
           <p>Selecione um módulo para ver os conteúdos dele!</p>
           <div className="list-modules">
-              {modules.map((e: any) => {
-        
-                return (
-                  <div
-                   key={e._id} 
-                   className="card-module-container"
-                   onClick={() =>
+            {modules.map((e: any) => {
+              return (
+                <div
+                  key={e._id}
+                  className="card-module-container"
+                  onClick={() =>
                     history.push({
                       pathname: `/lessons`,
                       state: { id: e._id },
                     })
                   }
-                   >
-                     
-                    <div className="card-module-thumb">
-                      <img src={LogoWhite} alt="Thumb" />
-                    </div>
-                    <div className="card-module-description">
-                      <h1>{e.name}</h1>
-                      <p>
-                        {/* {lessonsLength === undefined ? "0" : lessonsLength}/ */}
-                        {e.totalQuanity} aulas
-                      </p>
-                    </div>
+                >
+                  <div className="card-module-thumb">
+                    <img src={LogoWhite} alt="Thumb" />
                   </div>
-                );
-              })}
+                  <div className="card-module-description">
+                    <h1>{e.name}</h1>
+                    <p>Terá {e.totalQuanity} aulas</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

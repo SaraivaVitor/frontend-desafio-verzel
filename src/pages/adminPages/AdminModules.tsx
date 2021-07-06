@@ -38,12 +38,13 @@ const AdminModules: React.FC = () => {
 
   async function DeleteModule(prop: any) {
     await api.delete(`/deletemodules/${prop}`);
+    alert(`Aula Deletada!`);
+    return (window.location.href = "/admin/adminmodules");
   }
 
-  //passagem do id para adição e edição de aulas 
+  //passagem do id para adição e edição de aulas
   const historyAdd = useHistory();
   const historyEdit = useHistory();
-  
 
   //Listando em ordem alfabética
   modules.sort(function (a: any, b: any) {

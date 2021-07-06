@@ -1,4 +1,4 @@
-.footer-container{
+.footer-container {
     width: 100vw;
     height: 200px;
 
@@ -10,9 +10,9 @@
     justify-content: flex-start;
 }
 
-.footer-content-top{
+.footer-content-top {
     width: 100%;
-    height: 90%; 
+    height: 90%;
 
     background-color: #5E49FF;
 
@@ -21,12 +21,12 @@
     align-items: center;
     justify-content: center;
 
-    img{
+    img {
         width: 200px;
     }
 }
 
-.footer-socials{
+.footer-socials {
     width: 210px;
 
     padding-left: 5px;
@@ -34,13 +34,13 @@
     display: flex;
     justify-content: space-between;
 
-    span{
+    span {
         color: #fff;
         font-size: 35px;
     }
 }
 
-.footer-content-bottom{
+.footer-content-bottom {
     height: 10%;
 
     display: flex;
@@ -48,7 +48,7 @@
     align-items: center;
 
 
-    p{
+    p {
         font-size: 15px;
         color: #717171;
         font-weight: 400;
