@@ -1,20 +1,14 @@
 import { useLocation } from "react-router-dom";
-
 //icons
 import { useEffect, useState } from "react";
-
 //components
 import Nav from "../../components/Nav";
-
 //api
 import api from "../../service/api";
 import { AxiosResponse } from "axios";
-
-//images
-import LogoWhite from "../../assets/LogoWhite.svg";
-
 //styles
 import "../../styles/index.scss";
+import LessonsCard from "../../components/LessonsCard";
 
 const Lessons: React.FC = () => {
   const locationState = useLocation();
@@ -31,9 +25,8 @@ const Lessons: React.FC = () => {
     }
     getApi();
   }, [moduleId.id]);
-  console.log(lessons);
   //Listando em ordem alfabética
-  lessons.sort(function (a: any, b: any) {
+  const sortedLessons = lessons.sort(function (a: any, b: any) {
     return a.name > b.name
       ? 1
       : b.name > a.name
@@ -47,25 +40,14 @@ const Lessons: React.FC = () => {
         <div  className="home-content">
           <h1>Aulas:</h1>
           <div className="list-modules">
-            {lessons.map((e: any) => {
+            {sortedLessons.map((lesson: any) => {
               return (
-                <div
-                  id="Admin-Lessons"
-                  key={e._id}
-                  className="card-module-container"
-                >
-                  <div id="Thumb-Lessons" className="card-module-thumb">
-                    <img src={LogoWhite} alt="Thumb" />
-                  </div>
-                  <div
-                    id="Description-Lessons"
-                    className="card-module-description"
-                  >
-                    <h1>{e.name}</h1>
-                    <p>{e.description}</p>
-                    <p>{e.date}</p>
-                  </div>
-                </div>
+                <LessonsCard
+                  id={lesson._id}
+                  name={lesson.name}
+                  date={lesson.date}
+                  description={lesson.description}
+                /> 
               );
             })}
           </div>
