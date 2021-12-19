@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 const token: any = localStorage.getItem("@cursosOn")
 
 const api = axios.create({

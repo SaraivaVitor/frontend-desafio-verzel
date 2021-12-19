@@ -1,60 +1,46 @@
 import React, { useEffect, useState } from "react";
-
 //icons
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { FaTrashAlt } from "react-icons/fa";
 import { RiVideoAddFill } from "react-icons/ri";
 import { AiFillEdit } from "react-icons/ai";
-
 //components
 import Nav from "../../components/Nav";
-
 //api
-import { AxiosResponse } from "axios";
 import api from "../../service/api";
-
 //styles
 import "../../styles/index.scss";
 import { Link, useHistory } from "react-router-dom";
-
 //images
 import LogoWhite from "../../assets/LogoWhite.svg";
-
+import { Module } from "../../typings";
 const AdminModules: React.FC = () => {
-  const [modules, setModules] = useState<AxiosResponse | any>([]);
-
+  const [modules, setModules] = useState([]);
   useEffect(() => {
     async function getApi() {
       try {
         const req = await api.get(`/allmodules`);
-
         return setModules(req.data);
       } catch (err) {
-        console.log(err);
+        window.alert(err);
       }
     }
     getApi();
   }, []);
-
-  async function DeleteModule(prop: any) {
-    await api.delete(`/deletemodules/${prop}`);
+  async function DeleteModule(id: string) {
+    await api.delete(`/deletemodules/${id}`);
     alert(`Aula Deletada!`);
     return (window.location.href = "/admin/adminmodules");
   }
-
-  //passagem do id para adição e edição de aulas
   const historyAdd = useHistory();
   const historyEdit = useHistory();
-
-  //Listando em ordem alfabética
-  modules.sort(function (a: any, b: any) {
+  const sortedModules = modules.sort(function (a: Module, b: Module) {
     return a.name > b.name
       ? 1
       : b.name > a.name
       ? -1
       : 0;
   });
-
   return (
     <>
       <div className="container">
@@ -69,30 +55,30 @@ const AdminModules: React.FC = () => {
                 </span>
               </div>
             </Link>
-            {modules.map((e: any) => {
-              let quantityLength = e.lessons?.length;
+            {sortedModules.map((currentModule: Module) => {
+              const quantityLength = currentModule.lessons?.length;
               return (
                 <div
                   id="AdminModule"
-                  key={e._id}
+                  key={currentModule._id}
                   className="card-module-container"
                 >
                   <div className="card-module-thumb">
                     <img src={LogoWhite} alt="Thumb" />
                   </div>
                   <div className="card-module-description">
-                    <h1>{e.name}</h1>
+                    <h1>{currentModule.name}</h1>
                     <div className="bottom-module">
                       <p>
                         {quantityLength === undefined ? "0" : quantityLength}/
-                        {e.totalQuanity} aulas
+                        {currentModule.totalQuanity} aulas
                       </p>
                       <div className="bottom-module-buttons">
                         <span
                           onClick={() =>
                             historyAdd.push({
                               pathname: "/admin/addlesson",
-                              state: { id: e._id },
+                              state: { id: currentModule._id },
                             })
                           }
                         >
@@ -102,13 +88,13 @@ const AdminModules: React.FC = () => {
                           onClick={() =>
                             historyEdit.push({
                               pathname: "/admin/editmodule",
-                              state: { id: e._id },
+                              state: { id: currentModule._id },
                             })
                           }
                         >
                           <AiFillEdit />
                         </span>
-                        <span onClick={() => DeleteModule(e._id)} id="delete">
+                        <span onClick={() => DeleteModule(currentModule._id)} id="delete">
                           <FaTrashAlt />
                         </span>
                       </div>

@@ -1,18 +1,13 @@
 import React, { useState } from "react";
-
 import api from "../../service/api";
-
 //images
 import LogoWhite from "../../assets/LogoWhite.svg";
-
 //icons
 import { FaCalendarAlt } from "react-icons/fa";
 import { HiIdentification } from "react-icons/hi";
-
 //components
 import Logo from "../../assets/logo.svg";
 import Nav from "../../components/Nav";
-
 //styles
 import "../../styles/auth.scss";
 import { useLocation } from "react-router-dom";
@@ -20,24 +15,20 @@ import { useLocation } from "react-router-dom";
 const EditModule: React.FC = () => {
   const [name, setName] = useState("");
   const [totalQuanity, setTotal] = useState("");
-
   const locationState = useLocation();
   const moduleId: any = locationState.state;
-
   async function EditModule() {
     try {
       await api.put(`/editmodules/${moduleId.id}`, {
         name: name,
         totalQuanity: totalQuanity,
       });
-
       alert(`Módulo editado!`);
       return (window.location.href = "/admin/adminmodules");
     } catch (error) {
-      console.log("Houve erro!");
+      window.alert("Houve erro!");
     }
   }
-
   return (
     <>
       <div className="container">
@@ -70,7 +61,6 @@ const EditModule: React.FC = () => {
               />
             </div>
             <input id="selecao-arquivo" type="file"></input>
-
             <div onClick={() => EditModule()} className="button-submit">
               Enviar
             </div>

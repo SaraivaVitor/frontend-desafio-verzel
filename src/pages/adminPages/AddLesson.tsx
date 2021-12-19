@@ -1,19 +1,14 @@
 import React, { useState } from "react";
-
 import api from "../../service/api";
-
 //images
 import LogoWhite from "../../assets/LogoWhite.svg";
-
 //icons
 import { FaCalendarAlt } from "react-icons/fa";
 import { HiIdentification } from "react-icons/hi";
 import { MdDescription } from "react-icons/md";
-
 //components
 import Logo from "../../assets/logo.svg";
 import Nav from "../../components/Nav";
-
 //styles
 import "../../styles/auth.scss";
 import { useLocation } from "react-router-dom";
@@ -22,10 +17,8 @@ const AddLesson: React.FC = () => {
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
-
   const locationState = useLocation();
   const moduleId: any = locationState.state;
-
   async function AddLesson() {
     try {
       await api.post("/createlesson", {
@@ -34,15 +27,12 @@ const AddLesson: React.FC = () => {
         description: description,
         module: moduleId.id,
       });
-
       alert(`Aula adicionado!`);
       return (window.location.href = "/admin/adminlessons");
     } catch (error) {
-      console.log("Houve erro!");
-      console.log(error);
+      window.alert("Houve erro!");
     }
   }
-
   return (
     <>
       <div className="container">
@@ -85,7 +75,6 @@ const AddLesson: React.FC = () => {
               />
             </div>
             <input id="selecao-arquivo" type="file"></input>
-
             <div onClick={() => AddLesson()} className="button-submit">
               Adicionar
             </div>

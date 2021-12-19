@@ -1,19 +1,14 @@
 import React, { useState } from "react";
-
 import api from "../../service/api";
-
 //images
 import LogoWhite from "../../assets/LogoWhite.svg";
-
 //icons
 import { FaCalendarAlt } from "react-icons/fa";
 import { HiIdentification } from "react-icons/hi";
 import { MdDescription } from "react-icons/md";
-
 //components
 import Logo from "../../assets/logo.svg";
 import Nav from "../../components/Nav";
-
 //styles
 import "../../styles/auth.scss";
 import { useLocation } from "react-router-dom";
@@ -22,12 +17,8 @@ const AddLesson: React.FC = () => {
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
-
   const locationState = useLocation();
   const moduleId: any = locationState.state;
-
-  console.log(moduleId.id);
-
   async function EditLesson() {
     try {
       await api.put(`/editlesson/${moduleId.id}`, {
@@ -35,14 +26,12 @@ const AddLesson: React.FC = () => {
         date: date,
         description: description,
       });
-
       alert(`Aula editada!`);
       return (window.location.href = "/admin/adminlessons");
     } catch (error) {
-      console.log("Houve erro!");
+      window.alert("Houve erro!");
     }
   }
-
   return (
     <>
       <div className="container">
@@ -85,7 +74,6 @@ const AddLesson: React.FC = () => {
               />
             </div>
             <input id="selecao-arquivo" type="file"></input>
-
             <div onClick={() => EditLesson()} className="button-submit">
               Enviar
             </div>

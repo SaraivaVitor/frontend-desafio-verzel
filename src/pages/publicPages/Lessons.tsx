@@ -20,12 +20,10 @@ const Lessons: React.FC = () => {
   const locationState = useLocation();
   const moduleId: any = locationState.state;
   const [lessons, setLessons] = useState<AxiosResponse | any>([]);
-
   useEffect(() => {
     async function getApi() {
       try {
         const data = await api.get(`/alllessonsbymodule/${moduleId.id}`);
-
         return setLessons(data.data);
       } catch (err) {
         console.log(err);
@@ -33,9 +31,7 @@ const Lessons: React.FC = () => {
     }
     getApi();
   }, [moduleId.id]);
-
   console.log(lessons);
-
   //Listando em ordem alfabética
   lessons.sort(function (a: any, b: any) {
     return a.name > b.name

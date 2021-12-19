@@ -2,30 +2,25 @@
 import { GrConfigure } from "react-icons/gr";
 import { FaTrashAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
-
 //components
 import Nav from "../../components/Nav";
 import { useHistory } from "react-router-dom";
-
 //api
 import api from "../../service/api";
-import { AxiosResponse } from "axios";
-
 //styles
 import "../../styles/index.scss";
-
 //images
 import LogoWhite from "../../assets/LogoWhite.svg";
+import { Lesson } from "../../typings";
 
 const AdminLessons: React.FC = () => {
-  const [lessons, setLessons] = useState<AxiosResponse | any>([]);
+  const [lessons, setLessons] = useState([]);
   const historyEdit = useHistory();
-
   useEffect(() => {
     async function getApi() {
       try {
         const req = await api.get(`/allLessons`);
-
+        console.log(req.data);
         return setLessons(req.data);
       } catch (err) {
         console.log(err);
@@ -33,22 +28,19 @@ const AdminLessons: React.FC = () => {
     }
     getApi();
   }, []);
-
-  //deleta aula
-  async function DeleteLesson(prop: any) {
-    await api.delete(`/deletelesson/${prop}`);
+  async function DeleteLesson(id: string) {
+    await api.delete(`/deletelesson/${id}`);
     alert(`Aula Deletada!`);
     return (window.location.href = "/admin/adminlessons");
   }
-
-  //Listando em ordem alfabética
-  lessons.sort(function (a: any, b: any) {
+  const sortedLessons = lessons.sort(function (a: Lesson, b: Lesson) {
     return a.name > b.name
       ? 1
       : b.name > a.name
       ? -1
       : 0;
   });
+  console.log(lessons)
   return (
     <>
       <div className="container">
@@ -56,11 +48,11 @@ const AdminLessons: React.FC = () => {
         <div className="home-content">
           <h1>Aulas:</h1>
           <div className="list-modules">
-            {lessons.map((e: any) => {
+            {sortedLessons.map((lesson: Lesson) => {
               return (
                 <div
                   id="Admin-Lessons"
-                  key={e._id}
+                  key={lesson._id}
                   className="card-module-container"
                 >
                   <div id="Thumb-Lessons" className="card-module-thumb">
@@ -70,10 +62,10 @@ const AdminLessons: React.FC = () => {
                     id="Description-Lessons"
                     className="card-module-description"
                   >
-                    <h1>{e.name}</h1>
-                    <p>{e.description}</p>
+                    <h1>{lesson.name}</h1>
+                    <p>{lesson.description}</p>
                     <div className="bottom-module">
-                      <p>{e.date}</p>
+                      <p>{lesson.date}</p>
                       <div
                         id="Buttons-admin-lesson"
                         className="bottom-module-buttons"
@@ -82,13 +74,13 @@ const AdminLessons: React.FC = () => {
                           onClick={() =>
                             historyEdit.push({
                               pathname: "/admin/editlesson",
-                              state: { id: e._id },
+                              state: { id: lesson._id },
                             })
                           }
                         >
                           <GrConfigure />
                         </span>
-                        <span onClick={() => DeleteLesson(e._id)} id="delete">
+                        <span onClick={() => DeleteLesson(lesson._id)} id="delete">
                           <FaTrashAlt />
                         </span>
                       </div>

@@ -1,39 +1,31 @@
 import React, { useState } from "react";
-
 //images
 import Logo from "../../assets/logo.svg";
 import LogoWhite from "../../assets/LogoWhite.svg";
-
 //icons
 import { ImListNumbered } from "react-icons/im";
 import { GoFileSubmodule } from "react-icons/go";
-
 //components
 import Nav from "../../components/Nav";
-
 import api from "../../service/api";
-
 //styles
 import "../../styles/auth.scss";
 
 const AddModule: React.FC = () => {
   const [name, setName] = useState("");
   const [totalQuantity, setTotal] = useState("");
-
   async function AddModule() {
     try {
       await api.post("/createmodules", {
         name: name,
         totalQuanity: totalQuantity,
       });
-
       alert(`Módulo adicionado!`);
       return (window.location.href = "/admin/adminmodules");
     } catch (error) {
-      console.log(error, "Houve erro!");
+      window.alert("Houve um erro!");
     }
   }
-
   return (
     <>
       <div className="container">

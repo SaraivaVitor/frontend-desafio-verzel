@@ -6,7 +6,6 @@ import AppRoutes from "./app.routes";
 
 function Routes() {
   const { logado } = useContext(AuthContext);
-
   return logado ? <AuthRoutes /> : <AppRoutes />;
 }
 

@@ -1,14 +1,11 @@
 import React, { useRef } from "react";
-
 //images
 import Logo from "../../assets/logo.svg";
 import LogoWhite from "../../assets/LogoWhite.svg";
-
 //icons
 import { RiLockPasswordFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { IoMdMail } from "react-icons/io";
-
 //styles
 import "../../styles/auth.scss";
 import api from "../../service/api";
@@ -17,7 +14,6 @@ import { FormEvent } from "react";
 const AdminLogin: React.FC = () => {
   const emailRef: any = useRef();
   const passwordRef: any = useRef();
-
   const handlelogin = async (prop: FormEvent) => {
     prop.preventDefault();
     try {
@@ -29,7 +25,6 @@ const AdminLogin: React.FC = () => {
       window.location.replace("/");
     } catch (error) {}
   };
-
   return (
     <>
       <div className="container">

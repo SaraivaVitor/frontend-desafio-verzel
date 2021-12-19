@@ -14,33 +14,28 @@ import LogoWhite from "../../assets/LogoWhite.svg";
 import { AxiosResponse } from "axios";
 import api from "../../service/api";
 
-//stylesh
+//styles
 import "../../styles/index.scss";
 
 const Home: React.FC = () => {
   const [modules, setModules] = useState<AxiosResponse | any>([]);
   const history = useHistory();
-
   useEffect(() => {
     async function getApi() {
       try {
         const req = await api.get(`/allmodules`);
         return setModules(req.data);
       } catch (err) {
-        console.log(err);
+        window.alert(err);
       }
     }
     getApi();
   }, []);
-
-
   //Listando em ordem alfabética
   modules.sort(function (a: any, b: any) {
     return a.name > b.name ? 1 : b.name > a.name ? -1 : 0;
   });
-
-  console.log(modules);
-
+  console.log(modules)
   return (
     <>
       <div className="container">

@@ -1,5 +1,4 @@
 import { BrowserRouter, Switch } from "react-router-dom";
-
 //Rotas
 import Routes from './routes/index.routes';
 

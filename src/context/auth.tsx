@@ -9,13 +9,11 @@ export const AuthContext = createContext({} as IContext);
 const AuthProvider: React.FC = ({ children }) => {
   const [logado, setLogado] = useState(false);
   const token: any = localStorage.getItem("@cursosOn");
-
   useEffect(() => {
     if (token) {
       setLogado(true);
     }
   }, [token]);
-
   return (
     <AuthContext.Provider value={{ logado: Boolean(logado) }}>
       {children}

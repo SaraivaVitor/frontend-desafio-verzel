@@ -1,16 +1,13 @@
 import React, { useState } from "react";
-
 //images
 import Logo from "../../assets/logo.svg";
 import LogoWhite from "../../assets/LogoWhite.svg";
-
 //icons
 import { FaUserCircle } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { IoMdMail } from "react-icons/io";
 import { Link } from "react-router-dom";
 import api from "../../service/api";
-
 //styles
 import "../../styles/auth.scss";
 
@@ -18,7 +15,6 @@ const AdminSingUp: React.FC = () => {
   const [firstName, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   async function SignUp() {
     try {
       await api.post("/createuser", {
@@ -26,14 +22,12 @@ const AdminSingUp: React.FC = () => {
         email: email,
         password: password,
       });
-
       alert(`Voce foi cadastrado!`);
       return (window.location.href = "/login");
     } catch (error) {
       console.log("Houve erro!");
     }
   }
-
   return (
     <>
       <div className="container">
